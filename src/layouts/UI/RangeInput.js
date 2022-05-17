@@ -1,17 +1,18 @@
 import { useState } from 'react';
 import { Range } from 'react-range';
 
-const RangeInput = () => {
-	const [values, setValues] = useState([50]);
+const RangeInput = (props) => {
+	const [values, setValues] = useState([props.value]);
 	return (
 		<>
 			<Range
-				step={10}
-				min={50}
-				max={500}
+				step={props.step}
+				min={props.min}
+				max={props.max}
 				values={values}
 				onChange={(values) => {
 					setValues(values);
+					props.onValue(values);
 				}}
 				renderTrack={({ props, children }) => (
 					<div {...props} className="w-full h-[6px] pr-2 my-4 bg-gray-200 rounded-md">
@@ -26,11 +27,11 @@ const RangeInput = () => {
 				)}
 			/>
 			<div className="flex justify-between items-center text-[#3B3E44] font-medium mt-3">
-				<p>$50</p>
+				<p>1</p>
 				<div className="px-1 py-[1px] border-[#316BFF] border-2 rounded-[9px]">
 					{values}
 				</div>
-				<p>$500</p>
+				<p>8</p>
 			</div>
 		</>
 	);

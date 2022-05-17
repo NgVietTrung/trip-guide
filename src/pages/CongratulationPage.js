@@ -1,14 +1,12 @@
 import { useSelector } from 'react-redux';
 import { MdKeyboardArrowRight } from 'react-icons/md';
 import { Link } from 'react-router-dom';
-import HotelDetail from '../components/Hotel/HotelDetail';
-import FlightDetail from '../components/Flight/FlightDetail';
-import CarDetail from '../components/Car/CarDetail';
+import PaymentSuccess from '../components/Payment/PaymentSuccess';
 
-const DetailPage = () => {
+const CongratulationPage = () => {
 	const homeType = useSelector((state) => state.home.type);
 	return (
-		<div className="pt-[117px] bg-[#FAFAFB] pb-[280px]">
+		<div className="pt-[117px] bg-[#FAFAFB] pb-[280px] md:text-sm tablet:text-base">
 			<div className="md:flex items-center text-[#3B3E44] mb-10 hidden px-5 md:px-[135px]">
 				<Link to="/">Home</Link>
 				<MdKeyboardArrowRight className="text-2xl" />
@@ -16,20 +14,18 @@ const DetailPage = () => {
 					{homeType === 'hotel' ? 'Hotel' : homeType === 'flight' ? 'Flight' : 'Car'} List
 				</Link>
 				<MdKeyboardArrowRight className="text-2xl" />
-				<span className="text-[#B1B5C3]">
+				<Link to="/detail">
 					{homeType === 'hotel' ? 'Hotel' : homeType === 'flight' ? 'Flight' : 'Car'}{' '}
-					Booking Details
-				</span>
+					Details
+				</Link>
+				<MdKeyboardArrowRight className="text-2xl" />
+				<Link to="/payment">Confirm and pay</Link>
+				<MdKeyboardArrowRight className="text-2xl" />
+				<span className="text-[#B1B5C3]">Congratulations</span>
 			</div>
-			{homeType === 'hotel' ? (
-				<HotelDetail />
-			) : homeType === 'flight' ? (
-				<FlightDetail />
-			) : (
-				<CarDetail />
-			)}
+			<PaymentSuccess />
 		</div>
 	);
 };
 
-export default DetailPage;
+export default CongratulationPage;

@@ -13,11 +13,13 @@ const HomeItemAbsolute = (props) => {
 			/>
 			<div className="absolute top-[14px] left-[20px] lg:left-[30px] bg-white flex items-center rounded-[20px] px-2 py-1">
 				<FaStar className="text-[#FFD166]" />
-				<p className="text-[#FF543D] ml-1">3.5</p>
+				<p className="text-[#FF543D] ml-1">4.5</p>
 			</div>
-			<div className="absolute bottom-[14px] left-[20px] lg:left-[30px] text-white">
-				<h6 className="text-2xl lg:text-[40px] font-bold text-left">Barcelona Tour</h6>
-				<p className="text-left">196 Activities</p>
+			<div className="absolute bottom-[14px] left-[20px] lg:left-[30px] text-white w-full">
+				<h6 className="text-2xl lg:text-[40px] font-bold text-left whitespace-nowrap !overflow-hidden text-ellipsis w-4/5 mb-2">
+					{props.itemName}
+				</h6>
+				<p className="text-left">No.{Math.floor(props.rank)} on ranking</p>
 			</div>
 		</div>
 	);

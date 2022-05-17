@@ -11,7 +11,7 @@ import Button from '../../layouts/UI/Button';
 import Select from '../../layouts/UI/Select';
 import CardDropDown from '../../layouts/UI/CardDropdown';
 
-const HotelDetailMain = (props) => {
+const HotelDetailMain = ({ data }) => {
 	const [tabActive, setTabActive] = useState('des');
 	const [isGuestSelected, setIsGuestSelected] = useState(false);
 	const tabStyleActive = 'border-b-4 border-[#3B71FE] text-[#3B3E44] text-[#3B71FE]';
@@ -33,7 +33,7 @@ const HotelDetailMain = (props) => {
 					Exclusive room in house
 				</h2>
 				<p className="text-[#777E90] text-xl md:text-2xl font-medium pb-4 md:pb-[22px] border-b border-b-[#E6E8EC] mb-6 md:mb-[30px]">
-					Zurich, Switzerland
+					{data?.location.address.cityName}, {data?.location.address.countyName}
 				</p>
 				<div className="flex items-center justify-between lg:justify-start mb-5 lg:mb-0 w-full border-b border-b-[#E6E8EC] text-md md:text-base">
 					<Tab
@@ -49,58 +49,29 @@ const HotelDetailMain = (props) => {
 						Features
 					</Tab>
 					<Tab
-						className={tabActive === 'rap' ? tabStyleActive : tabStyleNonActive}
-						onToggle={() => toggleTabHandler('rap')}
+						className={tabActive === 'pol' ? tabStyleActive : tabStyleNonActive}
+						onToggle={() => toggleTabHandler('pol')}
 					>
-						Room & Price
+						Policies
 					</Tab>
 				</div>
 				<div className="mt-5 text-[#353945] mb-5 md:mb-10 text-md md:text-base leading-6">
 					<div
 						className={tabActive === 'des' ? contentStyleActive : contentStyleNonActive}
 					>
-						<p>
-							Arabian Park Hotel is a great choice for travellers looking for a 3 star
-							hotel in Dubai. It is located in Bur Dubai. This Hotel stands out as one
-							of the highly recom.2 kms), Al Wasl Indoor Stadium (1.2 kms), Dubai Mall
-							(5.4 kms), Jumeirah Beach Park (9.6 kms) and Jumeirah Public Beach (15.8
-							kms).
-						</p>
+						<p>{data?.description}</p>
 					</div>
 
 					<div
 						className={tabActive === 'fea' ? contentStyleActive : contentStyleNonActive}
 					>
-						<p>
-							Arabian Park Hotel is a great choice for travellers looking for a 3 star
-							hotel in Dubai. It is located in Bur Dubai. This Hotel stands out as one
-							of the highly recom.2 kms), Al Wasl Indoor Stadium (1.2 kms), Dubai Mall
-							(5.4 kms), Jumeirah Beach Park (9.6 kms) and Jumeirah Public Beach (15.8
-							kms).
-						</p>
+						<p>{data?.hotelFeatures.features.join(', ')}</p>
 					</div>
 
 					<div
-						className={tabActive === 'rap' ? contentStyleActive : contentStyleNonActive}
+						className={tabActive === 'pol' ? contentStyleActive : contentStyleNonActive}
 					>
-						<p>
-							Arabian Park Hotel is a great choice for travellers looking for a 3 star
-							hotel in Dubai. It is located in Bur Dubai. This Hotel stands out as one
-							of the highly recom.2 kms), Al Wasl Indoor Stadium (1.2 kms), Dubai Mall
-							(5.4 kms), Jumeirah Beach Park (9.6 kms) and Jumeirah Public Beach (15.8
-							kms).
-						</p>
-					</div>
-					<div
-						className={tabActive === 'rev' ? contentStyleActive : contentStyleNonActive}
-					>
-						<p>
-							Arabian Park Hotel is a great choice for travellers looking for a 3 star
-							hotel in Dubai. It is located in Bur Dubai. This Hotel stands out as one
-							of the highly recom.2 kms), Al Wasl Indoor Stadium (1.2 kms), Dubai Mall
-							(5.4 kms), Jumeirah Beach Park (9.6 kms) and Jumeirah Public Beach (15.8
-							kms).
-						</p>
+						<p>{data?.policies.importantInfo}</p>
 					</div>
 				</div>
 				<h3 className="text-lg md:text-2xl font-medium mb-5 md:mb-6">Hotel features</h3>
@@ -249,19 +220,19 @@ const HotelDetailMain = (props) => {
 				<div className="mb-5">
 					<h6 className="text-[#84878B] font-medium mb-2">Extra Features</h6>
 					<div className="flex justify-between items-center">
-						<Checkbox className="mb-[14px]" label="Allow to bring pet" />
+						<Checkbox label="Allow to bring pet" />
 						<p className="pb-3 text-[#353945] font-medium">$13</p>
 					</div>
 					<div className="flex justify-between items-center">
-						<Checkbox className="mb-[14px]" label="Breakfast a day per person" />
+						<Checkbox label="Breakfast a day per person" />
 						<p className="pb-3 text-[#353945] font-medium">$10</p>
 					</div>
 					<div className="flex justify-between items-center">
-						<Checkbox className="mb-[14px]" label="Parking a day" />
+						<Checkbox label="Parking a day" />
 						<p className="pb-3 text-[#353945] font-medium">$6</p>
 					</div>
 					<div className="flex justify-between items-center">
-						<Checkbox className="mb-[14px]" label="Extra pillow" />
+						<Checkbox label="Extra pillow" />
 						<p className="pb-3 text-[#353945] font-medium">Free</p>
 					</div>
 				</div>

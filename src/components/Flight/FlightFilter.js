@@ -22,23 +22,23 @@ const FlightFilter = (props) => {
 			<div className="mb-[30px] flex flex-col">
 				<h6 className="text-[#141416] font-medium text-lg mb-3">Popular Filters</h6>
 				<div className="flex justify-between items-center">
-					<Checkbox className="mb-[14px]" label="Non Stop" />
+					<Checkbox label="Non Stop" />
 					<p className="pb-3 text-[#84878B]">$2.632</p>
 				</div>
 				<div className="flex justify-between items-center">
-					<Checkbox className="mb-[14px]" label="IndiGo" />
+					<Checkbox label="IndiGo" />
 					<p className="pb-3 text-[#84878B]">$2.245</p>
 				</div>
 				<div className="flex justify-between items-center">
-					<Checkbox className="mb-[14px]" label="Vistara" />
+					<Checkbox label="Vistara" />
 					<p className="pb-3 text-[#84878B]">$2.846</p>
 				</div>
 				<div className="flex justify-between items-center">
-					<Checkbox className="mb-[14px]" label="Late Departures" />
+					<Checkbox label="Late Departures" />
 					<p className="pb-3 text-[#84878B]">$2.845</p>
 				</div>
 				<div className="flex justify-between items-center">
-					<Checkbox className="mb-[14px]" label="Go First" />
+					<Checkbox label="Go First" />
 					<p className="pb-3 text-[#84878B]">$2.567</p>
 				</div>
 			</div>
@@ -49,30 +49,30 @@ const FlightFilter = (props) => {
 			<div className="mb-[30px]">
 				<h6 className="text-[#141416] font-medium text-lg mb-3">Stops</h6>
 				<div className="flex justify-between items-center">
-					<Checkbox className="mb-[14px]" label="Hotels" />
+					<Checkbox label="Hotels" />
 					<p className="pb-3 text-[#84878B]">$2.527</p>
 				</div>
 				<div className="flex justify-between items-center">
-					<Checkbox className="mb-[14px]" label="Apartments" />
+					<Checkbox label="Apartments" />
 					<p className="pb-3 text-[#84878B]">$2.867</p>
 				</div>
 				<div className="flex justify-between items-center">
-					<Checkbox className="mb-[14px]" label="Resort" />
+					<Checkbox label="Resort" />
 					<p className="pb-3 text-[#84878B]">$2.367</p>
 				</div>
 			</div>
 			<div className="mb-[30px]">
 				<h6 className="text-[#141416] font-medium text-lg mb-3">Airlines</h6>
 				<div className="flex justify-between items-center">
-					<Checkbox className="mb-[14px]" label="Air India" />
+					<Checkbox label="Air India" />
 					<p className="pb-3 text-[#84878B]">$2.381</p>
 				</div>
 				<div className="flex justify-between items-center">
-					<Checkbox className="mb-[14px]" label="Go First" />
+					<Checkbox label="Go First" />
 					<p className="pb-3 text-[#84878B]">$2.846</p>
 				</div>
 				<div className="flex justify-between items-center">
-					<Checkbox className="mb-[14px]" label="IndiGo" />
+					<Checkbox label="IndiGo" />
 					<p className="pb-3 text-[#84878B]">$2.247</p>
 				</div>
 			</div>

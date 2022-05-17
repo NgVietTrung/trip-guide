@@ -2,7 +2,7 @@ import React from 'react';
 import { FaStar } from 'react-icons/fa';
 import Button from '../../layouts/UI/Button';
 
-const HomeItemTrending = () => {
+const HomeItemTrending = (props) => {
 	return (
 		<div
 			className={`border-[#E7ECF3] border-[1px] rounded-[10px] bg-white shadow-md cursor-pointer p-6 flex`}
@@ -15,17 +15,19 @@ const HomeItemTrending = () => {
 				/>
 			</div>
 			<div className="flex flex-col justify-between">
-				<h6 className="text-2xl font-bold text-left">Manila</h6>
+				<h6 className="text-2xl font-bold text-left whitespace-nowrap !overflow-hidden text-ellipsis w-[144px] sm:w-[300px]">
+					{props.itemName}
+				</h6>
 				<div className="flex items-center">
 					<FaStar className="text-[#FFD166]" />
 					<p className="ml-2">
 						4.91 <span className="text-[#84878b]">(147)</span>
 					</p>
 				</div>
-				<h6 className="text-2xl font-bold">
+				<h6 className="text-2xl font-bold text-left">
 					$250.00<span className="text-base text-[#84878b]">/night</span>
 				</h6>
-				<Button className="bg-[#316BFF] text-white px-4 py-2 text-sm font-bold">
+				<Button className="bg-[#316BFF] text-white px-4 py-2 text-sm font-bold max-w-[144px]">
 					Book Now
 				</Button>
 			</div>

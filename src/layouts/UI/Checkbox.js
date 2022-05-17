@@ -2,12 +2,13 @@ import React from 'react';
 
 const Checkbox = (props) => {
 	return (
-		<div className="flex items-center">
+		<div className={`flex items-center ${props.className}`}>
 			<input
-				className={`${props.className} form-check-input appearance-none h-6 w-6 border border-gray-300 rounded-[7px] bg-white checked:bg-blue-600 focus:outline-none transition duration-100 align-top bg-no-repeat bg-center bg-contain float-left mr-3 cursor-pointer ring-transparent focus:ring-transparent`}
+				className={`mb-[14px] form-check-input appearance-none h-6 w-6 border border-gray-300 rounded-[7px] bg-white checked:bg-blue-600 focus:outline-none transition duration-100 align-top bg-no-repeat bg-center bg-contain float-left mr-3 cursor-pointer ring-transparent focus:ring-transparent`}
 				onChange={props.onChange}
+				name={props.name}
 				type="checkbox"
-				value=""
+				value={props.value}
 				id="flexCheckDefault"
 			/>
 			<label

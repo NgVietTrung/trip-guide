@@ -4,44 +4,55 @@ import { ImAirplane } from 'react-icons/im';
 import { RiParkingBoxLine, RiEarthLine } from 'react-icons/ri';
 import { BsWallet2 } from 'react-icons/bs';
 import Button from '../../layouts/UI/Button';
-import { Link } from 'react-router-dom';
-const HotelListItem = () => {
+import { useNavigate } from 'react-router-dom';
+const HotelListItem = ({ hotel, checkin, checkout }) => {
+	let navigate = useNavigate();
+
+	const hotelDetailHandler = () => {
+		navigate('/detail/hotel/' + hotel.hotelId, { replace: true });
+	};
 	return (
 		<div className="rounded-[20px] flex flex-col lg:flex-row overflow-hidden lg:h-full lg:max-h-[465px] xl:max-h-[500px] border-2 border-[#E7ECF3] mb-[50px]">
-			<div className="h-full lg:max-w-[420px]">
+			<div className="h-full lg:max-w-[390px]">
 				<img
 					alt=""
-					srcSet="https://images.unsplash.com/photo-1602680232697-897c777b3b48?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+					srcSet={hotel?.media?.url}
 					className="object-cover w-full h-full block"
 				/>
 			</div>
 			<div className="p-5 sm:p-[30px] flex flex-col justify-between sm:min-w-[450px] xl:min-w-[480px]">
 				<h1 className="text-[#23262F] text-[34px] sm:text-[40px] font-bold mb-3">
-					Zurich, Switzerland
+					{hotel.name}
 				</h1>
 				<div className="flex items-center text-[#3B3E44] mb-4 lg:mb-0">
 					<FaStar className="text-[#FFC542] mr-[10px]" />
 					<p className="mr-5 text-sm">
-						4.8
-						<span className="text-[#84878B]"> (122 reviews)</span>
+						{hotel.starRating}
+						<span className="text-[#84878B]"> ({hotel.totalReviewCount} reviews)</span>
 					</p>
 					<div className="text-[#84878B] flex items-center">
 						<FiFlag className="mr-[10px]" />
-						<p className="text-sm">Zurich town, Switzerland</p>
+						<p className="text-sm">
+							{hotel.location.address.cityName}, {hotel.location.address.countryName}
+						</p>
 					</div>
 				</div>
 				<div className="flex flex-wrap mb-4 lg:mb-0">
 					<div className="flex items-center mb-[15px] mr-[19px]">
 						<FiMapPin className="text-[#84878B] text-lg mr-3" />
-						<p>Zurich Hotel, Switzerland</p>
+						<p>
+							{hotel.brand}, {hotel.location.address.countryName}
+						</p>
 					</div>
 					<div className="flex items-center mb-[15px] mr-[19px]">
 						<FiCalendar className="text-[#84878B] text-lg mr-3" />
-						<p>15.05.2021-16.05.2021</p>
+						<p>
+							{checkin} / {checkout}
+						</p>
 					</div>
 					<div className="flex items-center mb-[15px] mr-[19px]">
 						<ImAirplane className="text-[#84878B] text-lg mr-3" />
-						<p>Departure from zurich</p>
+						<p>Departure from {hotel.location.address.cityName}</p>
 					</div>
 				</div>
 				<div className="flex flex-col lg:flex-row justify-between">
@@ -69,13 +80,16 @@ const HotelListItem = () => {
 					</div>
 					<div className="mt-auto">
 						<p className="text-[#222529] text-[28px] font-bold mb-3 flex items-center justify-start lg:justify-center">
-							$320
+							${hotel.ratesSummary.minPrice}
 							<span className="text-[#84878B] text-base font-medium ml-2">
 								For Two
 							</span>
 						</p>
-						<Button className="bg-[#3B71FE] px-10 py-[10px] rounded-[23px] text-white text-xl font-bold">
-							<Link to="/detail">Book Now</Link>
+						<Button
+							className="bg-[#3B71FE] px-10 py-[10px] rounded-[23px] text-white text-xl font-bold"
+							onClick={hotelDetailHandler}
+						>
+							Book Now
 						</Button>
 					</div>
 				</div>

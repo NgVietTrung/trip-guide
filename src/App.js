@@ -16,6 +16,7 @@ import HomePage from './pages/HomePage';
 import ListPage from './pages/ListPage';
 import DetailPage from './pages/DetailPage';
 import PaymentPage from './pages/PaymentPage';
+import CongratulationPage from './pages/CongratulationPage';
 
 function App() {
 	const dispatch = useDispatch();
@@ -48,20 +49,43 @@ function App() {
 				{authPage && <AuthPage onToggle={authPageHandler} />}
 				<Routes>
 					<Route path="/" element={<HomePage />} />
-					<Route path="/search" element={<ListPage />} />
-					<Route path="/detail" element={<DetailPage />} />
-					<Route path="/payment" element={<PaymentPage />} />
-					<Route path="/profile" element={<Profile />} />
-					<Route path="/settings" element={<Settings />} />
-					<Route path="/settings/personal" element={<Settings />} />
-					<Route path="/settings/security" element={<Settings />} />
-					<Route path="/settings/notifications" element={<Settings />} />
-					<Route path="/settings/payment" element={<Settings />} />
-					<Route path="/settings/privacy" element={<Settings />} />
-					<Route path="/settings/preference" element={<Settings />} />
-					<Route path="/bookings" element={<Bookings />} />
-					<Route path="/wallet" element={<Wallet />} />
-					<Route path="/rewards" element={<Rewards />} />
+					<Route path="search" element={<ListPage />}>
+						<Route
+							path="hotel/:idLocation/:dateCheckIn/:dateCheckOut/:sortOrder"
+							element={<ListPage />}
+						/>
+						<Route
+							path="hotel/:idLocation/:dateCheckIn/:dateCheckOut/:sortOrder/:roomsNumber"
+							element={<ListPage />}
+						/>
+						<Route
+							path="hotel/:idLocation/:dateCheckIn/:dateCheckOut/:sortOrder/:roomsNumber/:amenities"
+							element={<ListPage />}
+						/>
+						<Route
+							path="hotel/:idLocation/:dateCheckIn/:dateCheckOut/:sortOrder/:roomsNumber/:starRating"
+							element={<ListPage />}
+						/>
+						<Route
+							path="hotel/:idLocation/:dateCheckIn/:dateCheckOut/:sortOrder/:roomsNumber/:amenities/:starRating"
+							element={<ListPage />}
+						/>
+					</Route>
+					<Route path="detail/hotel/:idHotel" element={<DetailPage />} />
+					<Route path="payment" element={<PaymentPage />} />
+					<Route path="congratulation" element={<CongratulationPage />} />
+					<Route path="profile" element={<Profile />} />
+					<Route path="settings" element={<Settings />}>
+						<Route path="personal" element={<Settings />} />
+						<Route path="security" element={<Settings />} />
+						<Route path="notifications" element={<Settings />} />
+						<Route path="payment" element={<Settings />} />
+						<Route path="privacy" element={<Settings />} />
+						<Route path="preference" element={<Settings />} />
+					</Route>
+					<Route path="bookings" element={<Bookings />} />
+					<Route path="wallet" element={<Wallet />} />
+					<Route path="rewards" element={<Rewards />} />
 				</Routes>
 				<Footer />
 			</BrowserRouter>

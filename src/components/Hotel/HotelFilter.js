@@ -1,14 +1,86 @@
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Checkbox from '../../layouts/UI/Checkbox';
-import Input from '../../layouts/UI/Input';
 import RangeInput from '../../layouts/UI/RangeInput';
-import useInput from '../../hooks/useInput';
 import Button from '../../layouts/UI/Button';
 import { GrClose } from 'react-icons/gr';
 
+const AMENITIES = [
+	{
+		value: 'FINTRNT',
+		label: 'Free Internet Access',
+	},
+	{
+		value: 'SPOOL',
+		label: 'Swimming Pool',
+	},
+	{
+		value: 'FITSPA',
+		label: 'Fitness Center',
+	},
+	{
+		value: 'PETALLOW',
+		label: 'Pets Allowed',
+	},
+	{
+		value: 'FBRKFST',
+		label: 'Free Breakfast',
+	},
+	{
+		value: 'FPRKING',
+		label: 'Free Parking',
+	},
+	{
+		value: 'AIRSHUTTL',
+		label: 'Airport Shuttle',
+	},
+];
+
 const HotelFilter = (props) => {
-	const { value: locationValue, valueChangeHandler: locationChangeHandler } = useInput(
-		(value) => value.length >= 0
-	);
+	let navigate = useNavigate();
+	const [roomsNumber, setRoomsNumber] = useState(1);
+	const [filterValue, setFilterValue] = useState({
+		amenities: [],
+		starRatings: [],
+	});
+
+	useEffect(() => {
+		const api = {
+			amenities: filterValue.amenities.join(),
+			starRatings: filterValue.starRatings.join(),
+			roomsNumber: roomsNumber,
+		};
+		let amenities = api.amenities !== '' ? '/' + api.amenities : '';
+		let starRatings = api.starRatings !== '' ? '/' + api.starRatings : '';
+		let url = `hotel/${props.idLocation}/${props.dateCheckIn}/${props.dateCheckOut}/${props.sortOrder}/${api.roomsNumber}${amenities}${starRatings}`;
+		navigate(url, { replace: true });
+	}, [roomsNumber, filterValue]);
+
+	const roomsNumberHandler = (value) => {
+		setRoomsNumber(value);
+	};
+
+	const checkboxHandler = (e) => {
+		const { name, checked, value } = e.target;
+		const { amenities, starRatings } = filterValue;
+
+		if (checked) {
+			if (name === 'amenities') {
+				setFilterValue({ ...filterValue, amenities: [...amenities, value] });
+			} else if (name === 'star') {
+				setFilterValue({ ...filterValue, starRatings: [...starRatings, value] });
+			}
+		} else {
+			if (name === 'amenities') {
+				setFilterValue({ ...filterValue, amenities: amenities.filter((e) => e !== value) });
+			} else if (name === 'star') {
+				setFilterValue({
+					...filterValue,
+					starRatings: starRatings.filter((e) => e !== value),
+				});
+			}
+		}
+	};
 
 	return (
 		<form
@@ -25,69 +97,43 @@ const HotelFilter = (props) => {
 					<Button>Clear</Button>
 				</div>
 			)}
-			<div className="mb-[30px]">
-				<h6 className="text-[#141416] font-medium text-lg mb-3">
-					Search location or property
-				</h6>
-				<Input
-					placeholder="Search location or property"
-					className="border-[#E7ECF3] px-5 py-4"
-					onChange={locationChangeHandler}
-					value={locationValue}
-				/>
-			</div>
 			<div className="mb-[30px] flex flex-col">
-				<h6 className="text-[#141416] font-medium text-lg mb-3">Popular Filters</h6>
-				<Checkbox className="mb-[14px]" label="Hotels" />
-				<Checkbox className="mb-[14px]" label="Breakfast and Dinner" />
-				<Checkbox className="mb-[14px]" label="Free Cancellation" />
-				<Checkbox className="mb-[14px]" label="No prepayment" />
+				<h6 className="text-[#141416] font-medium text-lg mb-3">Amenities</h6>
+				{AMENITIES.map((amenity) => (
+					<Checkbox
+						key={amenity.value}
+						label={amenity.label}
+						value={amenity.value}
+						name="amenities"
+						onChange={checkboxHandler}
+					/>
+				))}
 			</div>
 			<div className="mb-[30px]">
-				<h6 className="text-[#141416] font-medium text-lg mb-3">Price Range</h6>
-				<RangeInput />
+				<h6 className="text-[#141416] font-medium text-lg mb-3">Hotel star ratings</h6>
+				{Object.entries(props.filter.starRatingCounts).map(([key, value]) => {
+					return (
+						<div className="flex justify-between items-center" key={key}>
+							<Checkbox
+								label={key}
+								value={key}
+								name="star"
+								onChange={checkboxHandler}
+							/>
+							<p className="pb-3 text-[#84878B]">{value.toString()}</p>
+						</div>
+					);
+				})}
 			</div>
 			<div className="mb-[30px]">
-				<h6 className="text-[#141416] font-medium text-lg mb-3">Property Type</h6>
-				<div className="flex justify-between items-center">
-					<Checkbox className="mb-[14px]" label="Hotels" />
-					<p className="pb-3 text-[#84878B]">108</p>
-				</div>
-				<div className="flex justify-between items-center">
-					<Checkbox className="mb-[14px]" label="Apartments" />
-					<p className="pb-3 text-[#84878B]">141</p>
-				</div>
-				<div className="flex justify-between items-center">
-					<Checkbox className="mb-[14px]" label="Resort" />
-					<p className="pb-3 text-[#84878B]">108</p>
-				</div>
-			</div>
-			<div className="mb-[30px]">
-				<h6 className="text-[#141416] font-medium text-lg mb-3">Facilities</h6>
-				<div className="flex justify-between items-center">
-					<Checkbox className="mb-[14px]" label="Outdoor Sports" />
-					<p className="pb-3 text-[#84878B]">108</p>
-				</div>
-				<div className="flex justify-between items-center">
-					<Checkbox className="mb-[14px]" label="Berbeque" />
-					<p className="pb-3 text-[#84878B]">141</p>
-				</div>
-				<div className="flex justify-between items-center">
-					<Checkbox className="mb-[14px]" label="Living Room" />
-					<p className="pb-3 text-[#84878B]">108</p>
-				</div>
-				<div className="flex justify-between items-center">
-					<Checkbox className="mb-[14px]" label="Room Service" />
-					<p className="pb-3 text-[#84878B]">108</p>
-				</div>
-				<div className="flex justify-between items-center">
-					<Checkbox className="mb-[14px]" label="Swimming Pool" />
-					<p className="pb-3 text-[#84878B]">141</p>
-				</div>
-				<div className="flex justify-between items-center">
-					<Checkbox className="mb-[14px]" label="Spa" />
-					<p className="pb-3 text-[#84878B]">108</p>
-				</div>
+				<h6 className="text-[#141416] font-medium text-lg mb-3">Rooms number</h6>
+				<RangeInput
+					step={1}
+					min={1}
+					max={8}
+					value={roomsNumber}
+					onValue={roomsNumberHandler}
+				/>
 			</div>
 		</form>
 	);

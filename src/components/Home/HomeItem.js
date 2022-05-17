@@ -1,5 +1,3 @@
-import React from 'react';
-
 const HomeItem = (props) => {
 	return (
 		<div
@@ -10,8 +8,8 @@ const HomeItem = (props) => {
 				alt=""
 				className="rounded-t-[10px] object-cover mb-[18px] block"
 			/>
-			<h6 className="text-xl font-bold mb-3">Batu, East Java</h6>
-			<p className="text-[#84878B]">86 Destinations</p>
+			<h6 className="text-xl font-bold mb-3">{props.cityName}</h6>
+			<p className="text-[#84878B]">VIETNAM</p>
 		</div>
 	);
 };

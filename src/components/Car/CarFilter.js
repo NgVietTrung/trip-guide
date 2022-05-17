@@ -21,18 +21,18 @@ const CarFilter = (props) => {
 			)}
 			<div className="mb-[30px] flex flex-col">
 				<h6 className="text-[#141416] font-medium text-lg mb-3">Best Brands</h6>
-				<Checkbox className="mb-[14px]" label="Audi" />
-				<Checkbox className="mb-[14px]" label="BMW" />
-				<Checkbox className="mb-[14px]" label="Acura" />
-				<Checkbox className="mb-[14px]" label="Honda" />
-				<Checkbox className="mb-[14px]" label="Jeep" />
-				<Checkbox className="mb-[14px]" label="Mercury" />
-				<Checkbox className="mb-[14px]" label="Other" />
+				<Checkbox label="Audi" />
+				<Checkbox label="BMW" />
+				<Checkbox label="Acura" />
+				<Checkbox label="Honda" />
+				<Checkbox label="Jeep" />
+				<Checkbox label="Mercury" />
+				<Checkbox label="Other" />
 			</div>
 			<div className="mb-[30px] flex flex-col">
 				<h6 className="text-[#141416] font-medium text-lg mb-3">Capacity</h6>
-				<Checkbox className="mb-[14px]" label="2-5 passengers" />
-				<Checkbox className="mb-[14px]" label="6 or more passengers 12" />
+				<Checkbox label="2-5 passengers" />
+				<Checkbox label="6 or more passengers 12" />
 			</div>
 			<div className="mb-[30px]">
 				<h6 className="text-[#141416] font-medium text-lg mb-3">Price Range</h6>
@@ -40,13 +40,13 @@ const CarFilter = (props) => {
 			</div>
 			<div className="mb-[30px] flex flex-col">
 				<h6 className="text-[#141416] font-medium text-lg mb-3">Car Specs</h6>
-				<Checkbox className="mb-[14px]" label="Air Conditioning" />
-				<Checkbox className="mb-[14px]" label="4+ doors" />
+				<Checkbox label="Air Conditioning" />
+				<Checkbox label="4+ doors" />
 			</div>
 			<div className="mb-[30px] flex flex-col">
 				<h6 className="text-[#141416] font-medium text-lg mb-3">Mileage/Kilometers</h6>
-				<Checkbox className="mb-[14px]" label="Limited" />
-				<Checkbox className="mb-[14px]" label="Unlimited" />
+				<Checkbox label="Limited" />
+				<Checkbox label="Unlimited" />
 			</div>
 		</form>
 	);

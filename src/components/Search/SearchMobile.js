@@ -25,9 +25,11 @@ const SearchMobile = (props) => {
 			>
 				<BsChevronLeft className="text-[#84878B]" />
 			</Link>
-			<h6>Dubai, United arab emirates</h6>
-			<p>July 27</p>
-			<p>July 30</p>
+			<div className="flex items-center justify-between w-[320px] sm:w-auto whitespace-nowrap !overflow-hidden text-ellipsis">
+				<h6 className="mr-3">Dubai, United arab emirates</h6>
+				<p className="mr-3">July 27</p>
+				<p>July 30</p>
+			</div>
 			<div className="p-[14px] border-l-[1px] border-[#e7ecf3]">
 				<BiFilterAlt
 					className="text-2xl cursor-pointer"
